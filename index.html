@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏠 The Digital House - Explore & Create</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- House Navigation -->
+        <div class="house-nav">
+            <h1>🏠 Welcome to The Digital House</h1>
+            <p>Explore different rooms, each with unique tools and experiences!</p>
+            <div class="room-buttons">
+                <button onclick="enterRoom('analytics')" class="room-btn analytics-room">🔮 Life Analytics Room</button>
+                <button onclick="enterRoom('writer')" class="room-btn writer-room">✍️ Essay Writer Studio</button>
+                <button onclick="enterRoom('calculator')" class="room-btn calculator-room">🧮 Calculator Corner</button>
+                <button onclick="enterRoom('todo')" class="room-btn todo-room">📝 Task Manager Office</button>
+                <button onclick="enterRoom('music')" class="room-btn music-room">🎵 Music Player Lounge</button>
+                <button onclick="enterRoom('weather')" class="room-btn weather-room">🌤️ Weather Center</button>
+                <button onclick="enterRoom('games')" class="room-btn games-room">🎮 Game Arcade</button>
+                <button onclick="enterRoom('tools')" class="room-btn tools-room">🛠️ Utility Toolbox</button>
+                <button onclick="enterRoom('education')" class="room-btn education-room">📚 Education Hub</button>
+                <button onclick="enterRoom('ai-assistant')" class="room-btn ai-room">🤖 AI Assistant</button>
+            </div>
+        </div>
+
+        <!-- Analytics Room -->
+        <div id="analytics-room" class="room" style="display: none;">
+            <div class="room-header">
+                <h2>🔮 Life Analytics & Personality Insights</h2>
+                <button onclick="exitRoom()" class="exit-btn">🚪 Exit Room</button>
+            </div>
+
+            <div class="language-selector">
+                <h3>Choose Your Language</h3>
+                <div class="language-buttons">
+                    <button onclick="setLanguage('en')" class="lang-btn active" data-lang="en">🇺🇸 English</button>
+                    <button onclick="setLanguage('fr')" class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+                    <button onclick="setLanguage('es')" class="lang-btn" data-lang="es">🇪🇸 Español</button>
+                    <button onclick="setLanguage('de')" class="lang-btn" data-lang="de">🇩🇪 Deutsch</button>
+                </div>
+            </div>
+
+            <form id="userForm" class="user-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name" id="nameLabel">Enter your name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age" id="ageLabel">Enter your age:</label>
+                        <input type="number" id="age" name="age" min="1" max="120" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="height" id="heightLabel">Enter your height (cm):</label>
+                        <input type="number" id="height" name="height" min="50" max="300" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight" id="weightLabel">Enter your weight (kg):</label>
+                        <input type="number" id="weight" name="weight" min="20" max="500" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthDate" id="birthLabel">Enter your birth date:</label>
+                        <input type="date" id="birthDate" name="birthDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sport" id="sportLabel">Enter your favorite sport:</label>
+                        <input type="text" id="sport" name="sport" required>
+                    </div>
+                </div>
+                <button type="submit" id="submitBtn" class="submit-btn">🔮 Reveal My Life Secrets</button>
+            </form>
+
+            <div id="results" class="results-container" style="display: none;">
+                <div class="results-header">
+                    <h3 id="resultsTitle">Your Life Analysis</h3>
+                </div>
+
+                <div class="results-grid">
+                    <div class="result-card basic-info">
+                        <h4 id="basicInfoTitle">📋 Basic Information</h4>
+                        <div id="basicInfoContent"></div>
+                    </div>
+                    <div class="result-card health-analysis">
+                        <h4 id="healthTitle">💪 Health Analysis</h4>
+                        <div id="healthContent"></div>
+                    </div>
+                    <div class="result-card astro-info">
+                        <h4 id="astroTitle">⭐ Astrological Info</h4>
+                        <div id="astroContent"></div>
+                    </div>
+                    <div class="result-card personality">
+                        <h4 id="personalityTitle">🔮 Personality Analysis</h4>
+                        <div id="personalityContent"></div>
+                    </div>
+                </div>
+                <button onclick="resetAnalytics()" id="resetBtn" class="reset-btn">🔄 Start Over</button>
+            </div>
+        </div>
+
+        <!-- Essay Writer Room -->
+        <div id="writer-room" class="room" style="display: none;">
+            <div class="room-header">
+                <h2>✍️ Essay Writer Studio</h2>
+                <button onclick="exitRoom()" class="exit-btn">🚪 Exit Room</button>
+            </div>
+
+            <div class="writer-tools">
+                <div class="essay-form">
+                    <h3>🎯 Essay Generator</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="essayTopic">Essay Topic:</label>
+                            <input type="text" id="essayTopic" placeholder="Enter your essay topic...">
+                        </div>
+                        <div class="form-group">
+                            <label for="essayType">Essay Type:</label>
+                            <select id="essayType">
+                                <option value="argumentative">Argumentative</option>
+                                <option value="descriptive">Descriptive</option>
+                                <option value="narrative">Narrative</option>
+                                <option value="expository">Expository</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="wordCount">Target Word Count:</label>
+                            <input type="number" id="wordCount" value="500" min="100" max="5000">
+                        </div>
+                    </div>
+                    <button onclick="generateEssayOutline()" class="generate-btn">📝 Generate Outline</button>
+                </div>
+
+                <div class="essay-workspace-horizontal">
+                    <div class="outline-section">
+                        <h3>📋 Essay Outline</h3>
+                        <div id="essayOutline" class="outline-content"></div>
+                    </div>
+
+                    <div class="writing-section">
+                        <h3>✍️ Write Your Essay</h3>
+                        <textarea id="essayContent" placeholder="Start writing your essay here..."></textarea>
+                        <div class="writing-stats">
+                            <span id="currentWordCount">Words: 0</span>
+                            <span id="charactersCount">Characters: 0</span>
+                            <span id="readingTime">Reading time: 0 min</span>
+                        </div>
+                        <div class="essay-actions">
+                            <button onclick="saveEssay()" class="save-btn">💾 Save Essay</button>
+                            <button onclick="exportEssay()" class="export-btn">📤 Export as PDF</button>
+                            <button onclick="clearEssay()" class="clear-btn">🗑️ Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculator Room -->
+        <div id="calculator-room" class="room" style="display: none;">
+            <div class="room-header">
+                <h2>🧮 Calculator Corner</h2>
+                <button onclick="exitRoom()" class="exit-btn">🚪 Exit Room</button>
+            </div>
+
+            <div class="calculator-container">
+                <div class="calculator">
+                    <div class="calculator-display">
+                        <input type="text" id="calcDisplay" readonly>
+                    </div>
+                    <div class="calculator-buttons">
+                        <button onclick="clearCalc()" class="calc-btn clear">C</button>
+                        <button onclick="deleteLast()" class="calc-btn delete">⌫</button>
+                        <button onclick="addToCalc('/')" class="calc-btn operator">÷</button>
+                        <button onclick="addToCalc('*')" class="calc-btn operator">×</button>
+
+                        <button onclick="addToCalc('7')" class="calc-btn number">7</button>
+                        <button onclick="addToCalc('8')" class="calc-btn number">8</button>
+                        <button onclick="addToCalc('9')" class="calc-btn number">9</button>
+                        <button onclick="addToCalc('-')" class="calc-btn operator">-</button>
+
+                        <button onclick="addToCalc('4')" class="calc-btn number">4</button>
+                        <button onclick="addToCalc('5')" class="calc-btn number">5</button>
+                        <button onclick="addToCalc('6')" class="calc-btn number">6</button>
+                        <button onclick="addToCalc('+')" class="calc-btn operator">+</button>
+
+                        <button onclick="addToCalc('1')" class="calc-btn number">1</button>
+                        <button onclick="addToCalc('2')" class="calc-btn number">2</button>
+                        <button onclick="addToCalc('3')" class="calc-btn number">3</button>
+                        <button onclick="calculateResult()" class="calc-btn equals" rowspan="2">=</button>
+
+                        <button onclick="addToCalc('0')" class="calc-btn number zero">0</button>
+                        <button onclick="addToCalc('.')" class="calc-btn number">.</button>
+                    </div>
+                </div>
+
+                <div class="advanced-calc">
+                    <h3>🔬 Advanced Functions</h3>
+                    <div class="advanced-buttons">
+                        <button onclick="advancedCalc('sqrt')" class="adv-btn">√</button>
+                        <button onclick="advancedCalc('square')" class="adv-btn">x²</button>
+                        <button onclick="advancedCalc('sin')" class="adv-btn">sin</button>
+                        <button onclick="advancedCalc('cos')" class="adv-btn">cos</button>
+                        <button onclick="advancedCalc('tan')" class="adv-btn">tan</button>
+                        <button onclick="advancedCalc('log')" class="adv-btn">log</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Todo Room -->
+        <div id="todo-room" class="room" style="display: none;">
+            <div class="room-header">
+                <h2>📝 Task Manager Office</h2>
+                <button onclick="exitRoom()" class="exit-btn">🚪 Exit Room</button>
+            </div>
+
+            <div class="todo-container">
+                <div class="task-input">
+                    <input type="text" id="newTask" placeholder="Add a new task...">
+                    <select id="taskPriority">
+                        <option value="low">Low Priority</option>
+                        <option value="medium">Medium Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                    <button onclick="addTask()" class="add-task-btn">➕ Add Task</button>
+                </div>
+
+                <div class="task-filters">
+                    <button onclick="filterTasks('all')" class="filter-btn active" data-filter="all">All</button>
+                    <button onclick="filterTasks('pending')" class="filter-btn" data-filter="pending">Pending</button>
+                    <button onclick="filterTasks('completed')" class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+
+                <div id="taskList" class="task-list"></div>
+
+                <div class="task-stats">
+                    <span id="totalTasks">Total: 0</span>
+                    <span id="completedTasks">Completed: 0</span>
+                    <span id="pendingTasks">Pending: 0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Music Room -->
+        <div id="music-room" class="room" style="display: none;">
+            <div class="room-header">
+                <h2>🎵 Music Player Lounge</h2>
+                <button onclick="exitRoom()" class="exit-btn">🚪 Exit Room</button>
+            </div>
+
+            <div class="music-player">
+                <div class="now-playing">
+                    <h3>🎵 Ambient Study Music</h3>
+                    <p>Relaxing background music for productivity</p>
+                </div>
+
+                <div class="player-controls">
+                    <button onclick="previousTrack()" class="music-btn">⏮️</button>
+                    <button onclick="togglePlay()" class="music-btn play-pause" id="playPauseBtn">▶️</button>
+                    <button onclick="nextTrack()" class="music-btn">⏭️</button>
+                </div>
+
+                <div class="volume-control">
+                    <span>🔊</span>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                </div>
+
+                <div class="playlist">
+                    <h4>📻 Available Tracks</h4>
+                    <div class="track-list">
+                        <div class="track-item active" onclick="selectTrack(0)">🎵 Focus Flow</div>
+                        <div class="track-item" onclick="selectTrack(1)">🌊 Ocean Waves</div>
+                        <div class="track-item" onclick="selectTrack(2)">🌧️ Rain Sounds</div>
+                        <div class="track-item" onclick="selectTrack(3)">🔥 Crackling Fire</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Room -->
+        <div id="weather-room" class="room" style="display: none;">
+            <div class="room-header">
+                <h2>🌤️ Weather Center</h2>
+                <button onclick="exitRoom()" class="exit-btn">🚪 Exit Room</button>
+            </div>
+
+            <div class="weather-container">
+                <div class="weather-search">
+                    <input type="text" id="cityInput" placeholder="Enter city name...">
+                    <button onclick="getWeather()" class="weather-btn">🔍 Get Weather</button>
+                    <button onclick="getCurrentLocation()" class="weather-btn">📍 Use My Location</button>
+                </div>
+
+                <div id="weatherDisplay" class="weather-display">
+                    <div class="weather-demo">
+                        <h3>🌤️ Sample Weather</h3>
+                        <div class="weather-info">
+                            <div class="current-weather">
+                                <span class="temp">22°C</span>
+                                <span class="condition">Partly Cloudy</span>
+                            </div>
+                            <div class="weather-details">
+                                <div class="detail">💨 Wind: 15 km/h</div>
+                                <div class="detail">💧 Humidity: 65%</div>
+                                <div class="detail">👁️ Visibility: 10 km</div>
+                                <div class="detail">🌡️ Feels like: 25°C</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Games Room -->
+        <div id="games-room" class="room" style="display: none;">
+            <div class="room-header">
+                <h2>🎮 Game Arcade</h2>
+                <button onclick="exitRoom()" class="exit-btn">🚪 Exit Room</button>
+            </div>
+
+            <div class="games-container">
+                <div class="game-selection">
+                    <button onclick="startGame('number-guess')" class="game-btn">🔢 Number Guessing</button>
+                    <button onclick="startGame('memory')" class="game-btn">🧠 Memory Game</button>
+                    <button onclick="startGame('quiz')" class="game-btn">🧩 Quick Quiz</button>
+                </div>
+
+                <div id="gameArea" class="game-area">
+                    <div class="game-placeholder">
+                        <h3>🎮 Select a game to start playing!</h3>
+                        <p>Choose from our collection of brain games and challenges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools Room -->
+        <div id="tools-room" class="room" style="display: none;">
+            <div class="room-header">
+                <h2>🛠️ Utility Toolbox</h2>
+                <button onclick="exitRoom()" class="exit-btn">🚪 Exit Room</button>
+            </div>
+
+            <div class="tools-container">
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h4>🎨 Color Picker</h4>
+                        <input type="color" id="colorPicker" onchange="updateColor()">
+                        <div id="colorInfo"></div>
+                    </div>
+
+                    <div class="tool-card">
+                        <h4>📏 Unit Converter</h4>
+                        <select id="conversionType">
+                            <option value="length">Length</option>
+                            <option value="weight">Weight</option>
+                            <option value="temperature">Temperature</option>
+                        </select>
+                        <input type="number" id="convertInput" placeholder="Enter value">
+                        <button onclick="convertUnit()" class="convert-btn">Convert</button>
+                        <div id="conversionResult"></div>
+                    </div>
+
+                    <div class="tool-card">
+                        <h4>🕒 Timer</h4>
+                        <input type="number" id="timerMinutes" placeholder="Minutes" min="1" max="60">
+                        <button onclick="startTimer()" class="timer-btn">Start Timer</button>
+                        <div id="timerDisplay">00:00</div>
+                    </div>
+
+                    <div class="tool-card">
+                        <h4>🎲 Random Generator</h4>
+                        <button onclick="generateRandom('number')" class="random-btn">Random Number</button>
+                        <button onclick="generateRandom('quote')" class="random-btn">Random Quote</button>
+                        <div id="randomResult"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Hub -->
+        <div id="education-room" class="room" style="display: none;">
+            <div class="room-header">
+                <h2>📚 Education Hub</h2>
+                <button onclick="exitRoom()" class="exit-btn">🚪 Exit Room</button>
+            </div>
+
+            <div class="education-content">
+                <h3>Welcome to the Education Hub!</h3>
+                <p>Explore resources for learning various subjects.</p>
+                </div>
+        </div>
+
+        <!-- AI Assistant -->
+        <div id="ai-assistant-room" class="room" style="display: none;">
+            <div class="room-header">
+                <h2>🤖 AI Assistant</h2>
+                <button onclick="exitRoom()" class="exit-btn">🚪 Exit Room</button>
+            </div>
+            <div class="ai-content">
+                <h3>Hello, I'm your AI assistant!</h3>
+                <p>How can I help you today?</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
